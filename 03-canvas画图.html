@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      margin: 100px auto 0;
+      width: 459px;
+      height: 310px;
+      border: 2px solid rgb(7, 145, 7);
+    }
+
+    .canvas {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <canvas id="canvas" class="canvas" width="459" height="310"></canvas>
+  </div>
+
+  <script>
+
+    window.onload = function () {
+
+      //0: 画草地1
+      //1: 画草地2
+      var caodi = [
+        [0, 0, 0, 1, 0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 1, 0, 0],
+        [0, 1, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0, 1, 0, 0, 1]
+      ];
+
+      //所有图片链接
+      var imgs = [
+        './cao1.png',
+        './cao2.png'
+      ];
+
+      var canvas = document.getElementById('canvas');
+
+      var context = canvas.getContext('2d');
+
+      for (var i in caodi) {
+        for (var j in caodi[i]) {
+          var image = new Image();
+          image.src = imgs[caodi[i][j]];
+          image.setAttribute('date-i', i);
+          image.setAttribute('date-j', j);
+          image.onload = function () {
+            context.drawImage(this, this.getAttribute('date-j') * 51, this.getAttribute('date-i') * 62, 51, 62);
+          }
+        }
+      }
+
+
+
+
+
+      //必须等待图片加载完成后再绘制图片
+
+
+
+
+    }
+
+
+  </script>
+</body>
+
+</html>
